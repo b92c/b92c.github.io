@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brayann Barbosa | Software Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Incorporado -->
+    <style>
+        /* Base Styles */
+        :root {
+            --color-background: #ffffff;
+            --color-text: #121212;
+            --color-text-light: #555555;
+            --color-primary: #000000;
+            --color-secondary: #f5f5f5;
+            --color-accent: #333333;
+            --color-border: #e0e0e0;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--color-primary);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn.primary {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .btn.primary:hover {
+            background-color: var(--color-accent);
+        }
+
+        .btn.secondary {
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn.secondary:hover {
+            background-color: var(--color-border);
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-text);
+            transition: var(--transition);
+        }
+
+        .bar.active:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .bar.active:nth-child(2) {
+            opacity: 0;
+        }
+
+        .bar.active:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Hero Section */
+        #hero {
+            padding: 8rem 0 5rem;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-container {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--color-primary);
+            box-shadow: var(--shadow);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* About Section */
+        #about {
+            padding: 5rem 0;
+            background-color: var(--color-secondary);
+        }
+
+        .about-content {
+            max-width: 800px;
+        }
+
+        /* Projects Section */
+        #projects {
+            padding: 5rem 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--color-border);
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .project-tags span {
+            background-color: var(--color-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 5rem 0;
+            background-color: var(--color-secondary);
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .social-link i {
+            font-size: 2rem;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            color: var(--color-accent);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Animation classes */
+        section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        section.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .section-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .section-title, .about-content {
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                background-color: white;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                gap: 1rem;
+                transform: translateY(-150%);
+                opacity: 0;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .social-links {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.75rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .image-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">BB</div>
+                <ul class="nav-links">
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#projects">Projetos</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Brayann Barbosa</h1>
+                        <h2>Software Engineer</h2>
+                        <p>Desenvolvendo soluções digitais com paixão e precisão.</p>
+                        <div class="hero-buttons">
+                            <a href="#projects" class="btn primary">Ver Projetos</a>
+                            <a href="#contact" class="btn secondary">Contato</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="image-container">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/20241224_134339.jpg-8puoZEFEeXqZW84umYyI6mkFqsaI69.jpeg" alt="Brayann Barbosa">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">Sobre Mim</h2>
+                <div class="about-content">
+                    <p>Olá! Sou Brayann Barbosa, um engenheiro de software de 32 anos, apaixonado por criar soluções digitais inovadoras e funcionais.</p>
+                    <p>Moro na paradisíaca Ilha de Guriri, em São Mateus - ES, Brasil, onde encontro o equilíbrio perfeito entre trabalho e qualidade de vida.</p>
+                    <p>Quando não estou codificando, dedico meu tempo à musculação, Jiu-Jitsu e Muay Thai, atividades que me ajudam a manter o foco e a disciplina que aplico em meus projetos profissionais.</p>
+                    <p>Minha missão é desenvolver produtos digitais que realmente façam a diferença na vida das pessoas, combinando funcionalidade, design intuitivo e performance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Projetos</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Encontre Já</h3>
+                            <p>Marketplace para profissionais liberais e prestadores de serviço, conectando clientes a profissionais qualificados de diversas áreas.</p>
+                            <div class="project-tags">
+                                <span>Marketplace</span>
+                                <span>Web App</span>
+                            </div>
+                            <a href="https://encontreja.net/" target="_blank" class="btn secondary">Visitar Site</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>My Pomolist</h3>
+                            <p>Ferramenta de produtividade que combina a técnica Pomodoro com um gerenciador de tarefas, ajudando usuários a maximizar seu foco e eficiência.</p>
+                            <div class="project-tags">
+                                <span>Produtividade</span>
+                                <span>Web App</span>
+                            </div>
+                            <a href="https://mypomolist.com/" target="_blank" class="btn secondary">Visitar Site</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Contato</h2>
+                <div class="contact-content">
+                    <p>Interessado em trabalhar juntos ou tem alguma pergunta? Entre em contato por qualquer um dos canais abaixo:</p>
+                    <div class="social-links">
+                        <a href="mailto:brayann.barbosa@proton.me" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email</span>
+                        </a>
+                        <a href="https://wa.me/5527997560340" target="_blank" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/brayannbarbosa/" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/b92c" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Brayann Barbosa. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Incorporado -->
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Animate hamburger to X
+            const bars = document.querySelectorAll('.bar');
+            bars.forEach(bar => {
+                bar.classList.toggle('active');
+            });
+        });
+
+        // Close mobile menu when clicking on a link
+        const navItems = document.querySelectorAll('.nav-links a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    
+                    // Reset hamburger animation
+                    const bars = document.querySelectorAll('.bar');
+                    bars.forEach(bar => {
+                        bar.classList.remove('active');
+                    });
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Account for fixed header
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add active class to nav links on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add animation to elements when they come into view
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Update current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Add hover effect to project cards
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
