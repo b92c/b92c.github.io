@@ -3,26 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brayann Barbosa | Software Engineer</title>
+    <title>Brayann Barbosa | Forward Deployed Engineer | AI Engineer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- CSS Incorporado -->
     <style>
-        /* Base Styles */
+        /* CSS Design System - Apple-inspired Liquid Glass Theme */
         :root {
-            --color-background: #ffffff;
-            --color-text: #121212;
-            --color-text-light: #555555;
-            --color-primary: #000000;
-            --color-secondary: #f5f5f5;
-            --color-accent: #333333;
-            --color-border: #e0e0e0;
-            --transition: all 0.3s ease;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --border-radius: 8px;
+            --bg-main: #06080c;
+            --text-primary: #f5f5f7;
+            --text-secondary: #86868b;
+            --text-tertiary: #6e6e73;
+            --accent-blue: #0071e3;
+            --accent-blue-hover: #147ce5;
+            --accent-gradient: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+            --accent-purple-gradient: linear-gradient(135deg, #7b2cbf 0%, #9d4edd 100%);
+            --accent-glow: rgba(0, 114, 255, 0.15);
+            
+            /* Apple Glassmorphism */
+            --glass-bg: rgba(18, 20, 26, 0.55);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --glass-glow: rgba(255, 255, 255, 0.02);
+            --glass-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+            --glass-blur: blur(24px);
+            
+            --font-heading: 'Plus Jakarta Sans', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            --radius-xl: 24px;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            
+            --transition-apple: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-fast: all 0.25s ease;
         }
 
         * {
@@ -36,12 +52,79 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-body);
             line-height: 1.6;
-            color: var(--color-text);
-            background-color: var(--color-background);
+            color: var(--text-primary);
+            background-color: var(--bg-main);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* Liquid Animated Background */
+        .liquid-bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: var(--bg-main);
+            filter: blur(120px);
+            opacity: 0.65;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: screen;
+            animation: drift 25s infinite alternate ease-in-out;
+            will-change: transform;
+        }
+
+        .blob-1 {
+            top: -10%;
+            left: -10%;
+            width: 55vw;
+            height: 55vw;
+            background: radial-gradient(circle, rgba(0, 198, 255, 0.35) 0%, rgba(0, 114, 255, 0) 70%);
+            animation-duration: 22s;
+        }
+
+        .blob-2 {
+            bottom: -15%;
+            right: -10%;
+            width: 65vw;
+            height: 65vw;
+            background: radial-gradient(circle, rgba(157, 78, 221, 0.28) 0%, rgba(74, 0, 224, 0) 70%);
+            animation-duration: 28s;
+            animation-delay: -6s;
+        }
+
+        .blob-3 {
+            top: 35%;
+            left: 25%;
+            width: 45vw;
+            height: 45vw;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.2) 0%, rgba(123, 44, 191, 0) 70%);
+            animation-duration: 25s;
+            animation-delay: -12s;
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            50% {
+                transform: translate(8%, 12%) scale(1.08) rotate(180deg);
+            }
+            100% {
+                transform: translate(-8%, -4%) scale(0.92) rotate(360deg);
+            }
+        }
+
+        /* Container & Core Layout */
         .container {
             width: 90%;
             max-width: 1200px;
@@ -49,89 +132,130 @@
             padding: 0 20px;
         }
 
+        section {
+            padding: 7rem 0 5rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition-apple);
+            will-change: opacity, transform;
+        }
+
+        section.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         a {
             text-decoration: none;
             color: inherit;
+            transition: var(--transition-fast);
         }
 
-        ul {
-            list-style: none;
+        /* Glassmorphic Surfaces */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-apple);
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 60%);
+            pointer-events: none;
+            z-index: 1;
         }
 
         /* Typography */
-        h1, h2, h3, h4, h5, h6 {
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
             font-weight: 700;
-            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
+            line-height: 1.15;
+            font-weight: 800;
+            background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2.section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
             margin-bottom: 0.5rem;
+            text-align: center;
+            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        h2 {
-            font-size: 2.25rem;
-            margin-bottom: 1rem;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.75rem;
+        p.section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         p {
-            margin-bottom: 1rem;
+            font-family: var(--font-body);
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.6;
         }
 
-        .section-title {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 2.5rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background-color: var(--color-primary);
-        }
-
-        /* Buttons */
+        /* Buttons & Actions */
         .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            border-radius: var(--border-radius);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            border-radius: 30px;
             font-weight: 600;
-            transition: var(--transition);
+            font-size: 0.95rem;
             cursor: pointer;
+            transition: var(--transition-apple);
+            gap: 8px;
         }
 
         .btn.primary {
-            background-color: var(--color-primary);
-            color: white;
+            background: var(--text-primary);
+            color: var(--bg-main);
         }
 
         .btn.primary:hover {
-            background-color: var(--color-accent);
+            transform: scale(1.03);
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
         }
 
         .btn.secondary {
-            background-color: var(--color-secondary);
-            color: var(--color-text);
-            border: 1px solid var(--color-border);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: var(--glass-blur);
         }
 
         .btn.secondary:hover {
-            background-color: var(--color-border);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
 
         /* Header & Navigation */
@@ -140,10 +264,13 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            background: rgba(6, 8, 12, 0.6);
+            border-bottom: 1px solid var(--glass-border);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
             z-index: 1000;
-            padding: 1rem 0;
+            padding: 1.2rem 0;
+            transition: var(--transition-apple);
         }
 
         nav {
@@ -153,9 +280,14 @@
         }
 
         .logo {
+            font-family: var(--font-heading);
             font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--color-primary);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            background: linear-gradient(135deg, #ffffff 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor: pointer;
         }
 
         .nav-links {
@@ -165,26 +297,27 @@
         }
 
         .nav-links a {
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: var(--transition);
+            color: var(--text-secondary);
         }
 
-        .nav-links a:hover {
-            color: var(--color-accent);
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
         }
 
         .menu-toggle {
             display: none;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
             cursor: pointer;
         }
 
         .bar {
-            width: 25px;
-            height: 3px;
-            background-color: var(--color-text);
-            transition: var(--transition);
+            width: 22px;
+            height: 2px;
+            background-color: var(--text-primary);
+            transition: var(--transition-fast);
         }
 
         .bar.active:nth-child(1) {
@@ -202,27 +335,29 @@
         /* Language Selector */
         .language-selector {
             position: relative;
-            margin-left: 1.5rem;
         }
 
         .language-current {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
             cursor: pointer;
-            padding: 0.5rem;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: var(--transition-fast);
         }
 
         .language-current:hover {
-            background-color: var(--color-secondary);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .language-current i {
-            font-size: 0.8rem;
-            transition: var(--transition);
+            font-size: 0.7rem;
+            transition: var(--transition-fast);
         }
 
         .language-current.active i {
@@ -231,18 +366,19 @@
 
         .language-dropdown {
             position: absolute;
-            top: 100%;
+            top: 120%;
             right: 0;
-            background-color: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            padding: 0.5rem 0;
-            min-width: 120px;
+            background: rgba(18, 20, 26, 0.95);
+            backdrop-filter: var(--glass-blur);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--glass-border);
+            padding: 6px;
+            min-width: 130px;
             opacity: 0;
             visibility: hidden;
             transform: translateY(10px);
-            transition: var(--transition);
-            z-index: 10;
+            transition: var(--transition-apple);
+            z-index: 100;
         }
 
         .language-dropdown.active {
@@ -252,294 +388,909 @@
         }
 
         .language-option {
-            padding: 0.5rem 1rem;
+            padding: 8px 12px;
             cursor: pointer;
-            transition: var(--transition);
+            border-radius: var(--radius-sm);
+            transition: var(--transition-fast);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
         }
 
         .language-option:hover {
-            background-color: var(--color-secondary);
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
         }
 
         .language-option.active {
+            color: var(--text-primary);
             font-weight: 600;
-            background-color: var(--color-secondary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .language-option i {
+            font-size: 0.75rem;
+            opacity: 0;
+        }
+
+        .language-option.active i {
+            opacity: 1;
         }
 
         /* Hero Section */
         #hero {
-            padding: 8rem 0 5rem;
+            padding: 10rem 0 6rem;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
         }
 
         .hero-content {
             display: flex;
             align-items: center;
-            gap: 4rem;
+            gap: 5rem;
         }
 
         .hero-text {
-            flex: 1;
+            flex: 1.2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: rgba(0, 114, 255, 0.1);
+            border: 1px solid rgba(0, 198, 255, 0.25);
+            color: #60d5ff;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.2rem;
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+        }
+
+        .hero-badge i {
+            font-size: 0.75rem;
+            color: #00f2fe;
+        }
+
+        .hero-title-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-profession {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
         }
 
         .hero-text p {
-            font-size: 1.25rem;
-            color: var(--color-text-light);
-            margin-bottom: 2rem;
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 580px;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.2rem;
         }
 
-        .hero-image {
-            flex: 1;
+        .hero-image-wrapper {
+            flex: 0.8;
             display: flex;
             justify-content: center;
+            position: relative;
         }
 
         .image-container {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
+            width: 320px;
+            height: 320px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
             overflow: hidden;
-            border: 5px solid var(--color-primary);
-            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: var(--glass-blur);
+            animation: morph 20s infinite alternate ease-in-out;
+            position: relative;
+            z-index: 2;
         }
 
         .image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            filter: grayscale(10%) contrast(105%);
+            transition: var(--transition-apple);
         }
 
-        /* About Section */
+        .image-container:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        /* Glass glow element behind photo */
+        .image-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 360px;
+            height: 360px;
+            background: radial-gradient(circle, rgba(0, 114, 255, 0.25) 0%, rgba(157, 78, 221, 0.15) 50%, rgba(0,0,0,0) 70%);
+            z-index: 1;
+            pointer-events: none;
+            animation: pulse-glow 8s infinite alternate ease-in-out;
+        }
+
+        @keyframes morph {
+            0% {
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            }
+            33% {
+                border-radius: 50% 50% 60% 40% / 40% 60% 40% 60%;
+            }
+            66% {
+                border-radius: 60% 40% 30% 70% / 50% 30% 70% 50%;
+            }
+            100% {
+                border-radius: 40% 60% 50% 50% / 60% 40% 60% 40%;
+            }
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                transform: translate(-50%, -50%) scale(0.9);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 1.1;
+            }
+        }
+
+        /* About & Philosophy Section */
         #about {
-            padding: 5rem 0;
-            background-color: var(--color-secondary);
+            background: rgba(6, 8, 12, 0.3);
         }
 
-        .about-content {
-            max-width: 800px;
-        }
-
-        /* Projects Section */
-        #projects {
-            padding: 5rem 0;
-        }
-
-        .projects-grid {
+        .about-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: flex-start;
         }
 
-        .project-card {
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid var(--color-border);
+        .about-bio {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .about-bio p {
+            font-size: 1.08rem;
+        }
+
+        .philosophy-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .philosophy-card {
+            padding: 1.8rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .philosophy-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--accent-blue);
+            flex-shrink: 0;
+            background: linear-gradient(135deg, rgba(0, 198, 255, 0.1) 0%, rgba(0, 114, 255, 0.1) 100%);
+            border-color: rgba(0, 114, 255, 0.2);
+        }
+
+        .philosophy-card:nth-child(2) .philosophy-icon {
+            color: #9d4edd;
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.1) 0%, rgba(74, 0, 224, 0.1) 100%);
+            border-color: rgba(157, 78, 221, 0.2);
+        }
+
+        .philosophy-card:nth-child(3) .philosophy-icon {
+            color: #00f2fe;
+            background: linear-gradient(135deg, rgba(0, 242, 254, 0.1) 0%, rgba(123, 44, 191, 0.1) 100%);
+            border-color: rgba(0, 242, 254, 0.2);
+        }
+
+        .philosophy-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .philosophy-info p {
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+
+        /* Live Projects & Products Section */
+        .live-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .live-card {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
             height: 100%;
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        .live-card:hover {
+            border-color: rgba(255, 255, 255, 0.14);
+            transform: translateY(-4px);
         }
 
-        .project-content {
-            padding: 1.5rem;
+        .live-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
         }
 
-        .project-tags {
+        .live-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #34d399;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        .live-status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #10b981;
+            box-shadow: 0 0 8px #10b981;
+            animation: live-pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes live-pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.45;
+                transform: scale(1.25);
+            }
+        }
+
+        .live-url {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        .live-card h3 {
+            font-size: 1.55rem;
+            margin-bottom: 0.9rem;
+            font-weight: 700;
+        }
+
+        .live-card p {
+            font-size: 1rem;
+            margin-bottom: 1.8rem;
+            flex-grow: 1;
+        }
+
+        .live-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
+            gap: 0.6rem;
+            margin-bottom: 1.8rem;
         }
 
-        .project-tags span {
-            background-color: var(--color-secondary);
-            padding: 0.25rem 0.75rem;
+        .live-tags span {
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 4px 12px;
+            border-radius: 15px;
+            color: var(--text-secondary);
+        }
+
+        .live-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .live-actions .btn {
+            padding: 10px 22px;
+            font-size: 0.88rem;
+        }
+
+        /* Case Studies (Corporate Projects) */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .case-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 2.5rem;
+        }
+
+        .case-header {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .case-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+            background: rgba(0, 114, 255, 0.1);
+            padding: 6px 14px;
             border-radius: 20px;
+            border: 1px solid rgba(0, 114, 255, 0.15);
+        }
+
+        .case-card:nth-child(2) .case-tag {
+            color: #9d4edd;
+            background: rgba(157, 78, 221, 0.1);
+            border-color: rgba(157, 78, 221, 0.15);
+        }
+
+        .case-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-top: 1rem;
+        }
+
+        .case-desc {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .case-impact-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .case-impact-box i {
+            color: #45f3ff;
+            font-size: 1.2rem;
+            margin-top: 2px;
+            background: linear-gradient(135deg, #00f2fe 0%, #4a00e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .case-impact-box p {
+            font-size: 0.92rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* Open Source Section */
+        .oss-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .oss-card {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .oss-repo-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .oss-icon {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+        }
+
+        .oss-github-link {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .oss-github-link:hover {
+            color: var(--text-primary);
+        }
+
+        .oss-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .oss-card p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .oss-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .oss-tags span {
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 4px 12px;
+            border-radius: 15px;
+            color: var(--text-secondary);
+        }
+
+        /* Experience Timeline (Interactive UI) */
+        .timeline-wrapper {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-left: 2rem;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-blue) 0%, #9d4edd 50%, rgba(255,255,255,0.05) 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2rem;
+            top: 10px;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--bg-main);
+            border: 3px solid var(--accent-blue);
+            box-shadow: 0 0 10px var(--accent-blue);
+            transition: var(--transition-fast);
+            z-index: 5;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            border-color: #9d4edd;
+            box-shadow: 0 0 10px #9d4edd;
+        }
+
+        .timeline-card {
+            padding: 2.2rem;
+            margin-left: 1.5rem;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-role h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline-company {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .timeline-item:nth-child(even) .timeline-company {
+            color: #9d4edd;
+            background: linear-gradient(90deg, #9d4edd, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .timeline-period {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-tertiary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .timeline-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .timeline-bullets li {
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 0.98rem;
+            color: var(--text-secondary);
+        }
+
+        .timeline-bullets li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+            top: -2px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-bullets li::before {
+            color: #9d4edd;
+        }
+
+        /* Skills Matrix Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .skills-category {
+            padding: 2rem;
+            height: 100%;
+        }
+
+        .skills-category h3 {
+            font-size: 1.15rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .skills-list span {
             font-size: 0.85rem;
             font-weight: 500;
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 6px 14px;
+            border-radius: 20px;
+            transition: var(--transition-fast);
+        }
+
+        .skills-category:hover .skills-list span {
+            border-color: rgba(0, 114, 255, 0.15);
+            background: rgba(0, 114, 255, 0.02);
+        }
+
+        .skills-category:nth-child(2):hover .skills-list span {
+            border-color: rgba(157, 78, 221, 0.15);
+            background: rgba(157, 78, 221, 0.02);
+        }
+
+        .skills-list span:hover {
+            transform: scale(1.05) translateY(-2px);
+            background: rgba(255, 255, 255, 0.08) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         /* Contact Section */
         #contact {
-            padding: 5rem 0;
-            background-color: var(--color-secondary);
+            padding: 6rem 0 8rem;
         }
 
-        .contact-content {
+        .contact-card {
+            padding: 4rem;
             text-align: center;
-            max-width: 600px;
+            max-width: 900px;
             margin: 0 auto;
+            position: relative;
         }
 
-        .social-links {
+        .contact-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            max-width: 550px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-links {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
         }
 
-        .social-link {
-            display: flex;
-            flex-direction: column;
+        .contact-btn {
+            display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition);
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: var(--transition-apple);
         }
 
-        .social-link i {
-            font-size: 2rem;
+        .contact-btn i {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            transition: var(--transition-fast);
         }
 
-        .social-link:hover {
-            transform: translateY(-5px);
-            color: var(--color-accent);
+        .contact-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
+
+        .contact-btn:hover i {
+            color: var(--text-primary);
+        }
+
+        .contact-btn:hover.btn-email i { color: #ea4335; }
+        .contact-btn:hover.btn-whatsapp i { color: #25d366; }
+        .contact-btn:hover.btn-linkedin i { color: #0077b5; }
+        .contact-btn:hover.btn-github i { color: #ffffff; }
 
         /* Footer */
         footer {
-            background-color: var(--color-primary);
-            color: white;
-            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2.5rem 0;
+            background: rgba(6, 8, 12, 0.8);
+            backdrop-filter: var(--glass-blur);
             text-align: center;
-        }
-
-        /* Animation classes */
-        section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        section.animate {
-            opacity: 1;
-            transform: translateY(0);
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
             .hero-content {
-                flex-direction: column-reverse;
-                text-align: center;
-                gap: 2rem;
+                gap: 3rem;
             }
-            
-            .section-title::after {
-                left: 50%;
-                transform: translateX(-50%);
+            .image-container {
+                width: 280px;
+                height: 280px;
             }
-            
-            .section-title, .about-content {
-                text-align: center;
-                margin-left: auto;
-                margin-right: auto;
+            .image-glow {
+                width: 320px;
+                height: 320px;
             }
-            
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 5rem 0 3rem;
+            }
+            header {
+                padding: 1rem 0;
+            }
             .menu-toggle {
                 display: flex;
             }
-            
             .nav-links {
                 position: absolute;
                 top: 100%;
                 left: 0;
                 width: 100%;
                 flex-direction: column;
-                align-items: center;
-                background-color: white;
-                padding: 1rem 0;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-                gap: 1rem;
+                align-items: flex-start;
+                background: rgba(10, 12, 18, 0.98);
+                backdrop-filter: blur(30px);
+                -webkit-backdrop-filter: blur(30px);
+                border-bottom: 1px solid var(--glass-border);
+                padding: 2rem;
+                gap: 1.5rem;
                 transform: translateY(-150%);
                 opacity: 0;
-                transition: var(--transition);
+                transition: var(--transition-apple);
+                pointer-events: none;
             }
-            
             .nav-links.active {
                 transform: translateY(0);
                 opacity: 1;
+                pointer-events: all;
             }
-            
+            .language-selector {
+                margin-top: 0.5rem;
+                width: 100%;
+            }
+            .language-dropdown {
+                position: static;
+                margin-top: 0.5rem;
+                box-shadow: none;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.02);
+                border-color: rgba(255, 255, 255, 0.05);
+            }
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 3rem;
+            }
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
             .hero-buttons {
                 justify-content: center;
             }
-            
-            .social-links {
-                gap: 1.5rem;
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
             }
-
-            .language-selector {
-                margin-left: 0;
-                margin-top: 1rem;
+            .live-grid, .cases-grid, .oss-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
-
-            .language-dropdown {
-                position: static;
-                box-shadow: none;
-                margin-top: 0.5rem;
-                width: 100%;
+            .contact-card {
+                padding: 2.5rem 1.5rem;
+            }
+            .contact-links {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .contact-btn {
+                justify-content: center;
             }
         }
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
-            
-            h2 {
-                font-size: 1.75rem;
+            h2.section-title {
+                font-size: 1.8rem;
             }
-            
-            .btn {
-                padding: 10px 20px;
-            }
-            
-            .image-container {
-                width: 250px;
-                height: 250px;
-            }
-            
             .hero-buttons {
                 flex-direction: column;
                 gap: 1rem;
+                width: 100%;
             }
-            
-            .social-links {
-                flex-direction: column;
-                gap: 1.5rem;
+            .hero-buttons .btn {
+                width: 100%;
+            }
+            .image-container {
+                width: 240px;
+                height: 240px;
+            }
+            .image-glow {
+                width: 280px;
+                height: 280px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .timeline-card {
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
+
+    <!-- Liquid Background Layer -->
+    <div class="liquid-bg-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Header & Navigation -->
     <header>
         <div class="container">
             <nav>
-                <div class="logo">BB</div>
+                <div class="logo" id="logo-bb">BB</div>
                 <ul class="nav-links">
-                    <li><a href="#about" class="nav-about">About</a></li>
-                    <li><a href="#projects" class="nav-projects">Projects</a></li>
-                    <li><a href="#contact" class="nav-contact">Contact</a></li>
+                    <li><a href="#about" class="nav-about" data-i18n="nav-about">About & Philosophy</a></li>
+                    <li><a href="#live-projects" class="nav-live-projects" data-i18n="nav-live-projects">Live Projects</a></li>
+                    <li><a href="#cases" class="nav-case-studies" data-i18n="nav-case-studies">Enterprise Impact</a></li>
+                    <li><a href="#projects" class="nav-open-source" data-i18n="nav-open-source">Open Source</a></li>
+                    <li><a href="#experience" class="nav-experience" data-i18n="nav-experience">Experience</a></li>
+                    <li><a href="#skills" class="nav-skills" data-i18n="nav-skills">Skills</a></li>
+                    <li><a href="#contact" class="nav-contact" data-i18n="nav-contact">Contact</a></li>
                     <li class="language-selector">
                         <div class="language-current" id="language-current">
                             <span>English</span>
@@ -547,12 +1298,12 @@
                         </div>
                         <div class="language-dropdown" id="language-dropdown">
                             <div class="language-option" data-lang="en">
-                                <i class="fas fa-check language-check"></i>
                                 <span>English</span>
+                                <i class="fas fa-check"></i>
                             </div>
                             <div class="language-option" data-lang="pt-br">
-                                <i class="fas fa-check language-check"></i>
                                 <span>Português</span>
+                                <i class="fas fa-check"></i>
                             </div>
                         </div>
                     </li>
@@ -567,90 +1318,462 @@
     </header>
 
     <main>
+        <!-- Hero Section -->
         <section id="hero">
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text">
-                        <h1>Brayann Barbosa</h1>
-                        <h2 class="hero-profession">Software Engineer</h2>
-                        <p class="hero-description">Developing digital solutions with passion and precision.</p>
+                        <div class="hero-badge">
+                            <i class="fas fa-bolt"></i>
+                            <span data-i18n="hero-badge">Tech Lead at HostGator LATAM • 7+ Years Experience</span>
+                        </div>
+                        <div class="hero-title-container">
+                            <h1 data-i18n="hero-title">Brayann Barbosa</h1>
+                            <div class="hero-profession" data-i18n="hero-subtitle">Forward Deployed Engineer | AI Engineer</div>
+                        </div>
+                        <p data-i18n="hero-desc">I bridge complex business problems and production AI, deploying autonomous multi-agent workflows (LangGraph, LangChain, Google ADK) and architecting event-driven Go and Python systems at scale.</p>
                         <div class="hero-buttons">
-                            <a href="#projects" class="btn primary btn-projects">View Projects</a>
-                            <a href="#contact" class="btn secondary btn-contact">Contact</a>
+                            <a href="#live-projects" class="btn primary" data-i18n="hero-cta-primary">Explore Live Projects</a>
+                            <a href="#contact" class="btn secondary" data-i18n="hero-cta-secondary">Get in Touch</a>
                         </div>
                     </div>
-                    <div class="hero-image">
+                    <div class="hero-image-wrapper">
                         <div class="image-container">
                             <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/20241224_134339.jpg-8puoZEFEeXqZW84umYyI6mkFqsaI69.jpeg" alt="Brayann Barbosa">
                         </div>
+                        <div class="image-glow"></div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- About & Leadership Philosophy -->
         <section id="about">
             <div class="container">
-                <h2 class="section-title about-title">About Me</h2>
-                <div class="about-content">
-                    <p class="about-p1">Hello! I'm Brayann Barbosa, a software engineer passionate about creating innovative and functional digital solutions.</p>
-                    <p class="about-p2">I live in the paradise-like Guriri Island, in São Mateus - ES, Brazil, where I find the perfect balance between work and quality of life.</p>
-                    <p class="about-p3">When I'm not coding, I dedicate my time to weightlifting, Jiu-Jitsu, and Muay Thai, activities that help me maintain the focus and discipline I apply to my professional projects.</p>
-                    <p class="about-p4">My mission is to develop digital products that truly make a difference in people's lives, combining functionality, intuitive design, and performance.</p>
+                <h2 class="section-title" data-i18n="about-title">About & Philosophy</h2>
+                <p class="section-subtitle" data-i18n="about-subtitle">Bridging the gap between production AI engineering, distributed architecture, and rapid product delivery.</p>
+                
+                <div class="about-grid">
+                    <div class="about-bio">
+                        <p data-i18n="about-bio-1">I am Brayann Barbosa, a Forward Deployed Engineer, AI Engineer, and Tech Lead with over 7 years of experience building high-availability distributed systems. At HostGator LATAM, I lead cross-functional squads (Frontend, Backend, and QA), partnering directly with Product Owners and stakeholders to ship AI-driven solutions—recognized twice as Top Talent and with the Gator Destaque award.</p>
+                        <p data-i18n="about-bio-2">Based in Guriri Island (São Mateus - ES, Brazil) and fluent in Portuguese, English, and Spanish, I bring the discipline of weightlifting, Jiu-Jitsu, and Muay Thai into engineering: solving ambiguous technical challenges in the field with speed, strategy, and resilience.</p>
+                    </div>
+                    
+                    <div class="philosophy-grid">
+                        <!-- Card 1 -->
+                        <div class="glass-card philosophy-card">
+                            <div class="philosophy-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="philosophy-info">
+                                <h3 data-i18n="phil-ai-title">Forward Deployed AI Engineering</h3>
+                                <p data-i18n="phil-ai-desc">Designing and deploying autonomous multi-agent workflows (LangGraph, LangChain, Google ADK), vector RAG pipelines, and token-efficient LLM integrations directly into production.</p>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="glass-card philosophy-card">
+                            <div class="philosophy-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <div class="philosophy-info">
+                                <h3 data-i18n="phil-perf-title">Event-Driven Architecture & Scale</h3>
+                                <p data-i18n="phil-perf-desc">Building resilient Go and Python microservices, Kafka pub-sub pipelines, and Clean/Hexagonal systems engineered for high availability and low latency.</p>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="glass-card philosophy-card">
+                            <div class="philosophy-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="philosophy-info">
+                                <h3 data-i18n="phil-lead-title">Technical Leadership & Product Impact</h3>
+                                <p data-i18n="phil-lead-desc">Empowering multidisciplinary squads, aligning technical strategy with business growth, and delivering portfolio-expanding products from zero to production.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- Live Projects & Products -->
+        <section id="live-projects">
+            <div class="container">
+                <h2 class="section-title" data-i18n="live-title">Live Projects & Products</h2>
+                <p class="section-subtitle" data-i18n="live-subtitle">Websites, SaaS applications, and AI products currently live in production.</p>
+                
+                <div class="live-grid">
+                    <!-- Live Project 1 -->
+                    <div class="glass-card live-card">
+                        <div class="live-card-top">
+                            <span class="live-status-badge">
+                                <span class="live-status-dot"></span>
+                                <span data-i18n="live-status">Live in Production</span>
+                            </span>
+                            <span class="live-url">encontreja.net</span>
+                        </div>
+                        <h3 data-i18n="live1-title">Encontre Já</h3>
+                        <p data-i18n="live1-desc">Digital service marketplace connecting clients with qualified professionals across multiple categories, built with a focus on conversion, reliability, and intuitive discovery.</p>
+                        <div class="live-tags">
+                            <span data-i18n="live-tag-marketplace">Marketplace</span>
+                            <span>Web Platform</span>
+                            <span data-i18n="live-tag-prod">Production</span>
+                        </div>
+                        <div class="live-actions">
+                            <a href="https://encontreja.net/" target="_blank" rel="noopener noreferrer" class="btn secondary">
+                                <span data-i18n="live-visit">Visit Website</span>
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Live Project 2 -->
+                    <div class="glass-card live-card">
+                        <div class="live-card-top">
+                            <span class="live-status-badge">
+                                <span class="live-status-dot"></span>
+                                <span data-i18n="live-status">Live in Production</span>
+                            </span>
+                            <span class="live-url">mypomolist.com</span>
+                        </div>
+                        <h3 data-i18n="live2-title">My Pomolist</h3>
+                        <p data-i18n="live2-desc">Productivity web application combining the Pomodoro time-boxing technique with an agile task manager to help users sustain deep focus and track daily execution.</p>
+                        <div class="live-tags">
+                            <span data-i18n="live-tag-productivity">Productivity App</span>
+                            <span>React / Web</span>
+                            <span data-i18n="live-tag-prod">Production</span>
+                        </div>
+                        <div class="live-actions">
+                            <a href="https://mypomolist.com/" target="_blank" rel="noopener noreferrer" class="btn secondary">
+                                <span data-i18n="live-visit">Visit Website</span>
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Template for adding new live projects / AI demos:
+                    <div class="glass-card live-card">
+                        <div class="live-card-top">
+                            <span class="live-status-badge">
+                                <span class="live-status-dot"></span>
+                                <span data-i18n="live-status">Live in Production</span>
+                            </span>
+                            <span class="live-url">yourdomain.com</span>
+                        </div>
+                        <h3>Project Name</h3>
+                        <p>Concise description of the live product, AI agent workflow, or web application.</p>
+                        <div class="live-tags">
+                            <span>AI Agent</span>
+                            <span>LangGraph</span>
+                            <span>Production</span>
+                        </div>
+                        <div class="live-actions">
+                            <a href="https://yourdomain.com/" target="_blank" rel="noopener noreferrer" class="btn secondary">
+                                <span data-i18n="live-visit">Visit Website</span>
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies (Corporate Projects) -->
+        <section id="cases">
+            <div class="container">
+                <h2 class="section-title" data-i18n="cases-title">Enterprise Impact</h2>
+                <p class="section-subtitle" data-i18n="cases-subtitle">Key achievements in proprietary corporate ecosystems where source code remains private, but the architectural solutions and business impacts are highly visible.</p>
+                
+                <div class="cases-grid">
+                    <!-- Case 1 -->
+                    <div class="glass-card case-card">
+                        <div class="case-header">
+                            <span class="case-tag" data-i18n="case1-tag">HostGator LATAM / Newfold Digital</span>
+                        </div>
+                        <h3 class="case-title" data-i18n="case1-title">AI Agent Workflows & Event-Driven Cloud Ecosystem</h3>
+                        <p class="case-desc" data-i18n="case1-desc">Integrating LLMs and multi-agent systems (LangGraph, LangChain, Google ADK, BubbleChat AI Agent Factory) into production customer flows, alongside event-driven Go microservices on AWS (Lambda, EventBridge, DynamoDB, API Gateway) and PIX/billing financial platforms.</p>
+                        <div class="case-impact-box">
+                            <i class="fas fa-circle-check"></i>
+                            <p data-i18n="case1-impact">Impact: Automated high-volume customer workflows, reduced token consumption, and scaled resilient serverless and financial architectures serving millions of hosting users.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Case 2 -->
+                    <div class="glass-card case-card">
+                        <div class="case-header">
+                            <span class="case-tag" data-i18n="case2-tag">frete.com (Fretebras)</span>
+                        </div>
+                        <h3 class="case-title" data-i18n="case2-title">AI Freight Recommendation Engine & Real-Time Search</h3>
+                        <p class="case-desc" data-i18n="case2-desc">Architected an event-driven recommendation engine using Kafka (pub-sub) and Golang microservices matching cargo to truckers via Milvus (Vector Database), Data Science models, and MongoDB, plus a high-throughput search engine using OpenSearch (Elasticsearch) and Redis.</p>
+                        <div class="case-impact-box">
+                            <i class="fas fa-circle-check"></i>
+                            <p data-i18n="case2-impact">Impact: Enabled real-time semantic matching between freight and drivers, cut API latencies with Redis caching, and ensured 24/7 observability via Datadog and Grafana.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Open Source -->
         <section id="projects">
             <div class="container">
-                <h2 class="section-title projects-title">Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-content">
-                            <h3>Encontre Já</h3>
-                            <p class="project1-desc">Marketplace for freelancers and service providers, connecting clients to qualified professionals from various areas.</p>
-                            <div class="project-tags">
-                                <span class="tag-marketplace">Marketplace</span>
-                                <span class="tag-webapp">Web App</span>
-                            </div>
-                            <a href="https://encontreja.net/" target="_blank" class="btn secondary btn-visit">Visit Website</a>
+                <h2 class="section-title" data-i18n="oss-title">Featured Open Source</h2>
+                <p class="section-subtitle" data-i18n="oss-subtitle">My contributions to the developer community, focusing on container monitoring and LLM optimization.</p>
+                
+                <div class="oss-grid">
+                    <!-- Project 1 -->
+                    <div class="glass-card oss-card">
+                        <div class="oss-repo-info">
+                            <i class="fab fa-github oss-icon"></i>
+                            <a href="https://github.com/b92c/gowatch" target="_blank" class="oss-github-link">
+                                <span data-i18n="visit-repo">View on GitHub</span>
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                        <h3 data-i18n="oss1-title">gowatch</h3>
+                        <p data-i18n="oss1-desc">A lightweight Docker container monitor for local microservices development. Tracks memory, CPU, and network resource consumption in real time directly from the CLI.</p>
+                        <div class="oss-tags">
+                            <span>Go</span>
+                            <span>Docker</span>
+                            <span>CLI</span>
+                            <span>Telemetry</span>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <div class="project-content">
-                            <h3>My Pomolist</h3>
-                            <p class="project2-desc">Productivity tool that combines the Pomodoro technique with a to-do list manager, helping users maximize their focus and efficiency.</p>
-                            <div class="project-tags">
-                                <span class="tag-productivity">Productivity</span>
-                                <span class="tag-webapp">Web App</span>
-                            </div>
-                            <a href="https://mypomolist.com/" target="_blank" class="btn secondary btn-visit">Visit Website</a>
+                    
+                    <!-- Project 2 -->
+                    <div class="glass-card oss-card">
+                        <div class="oss-repo-info">
+                            <i class="fab fa-github oss-icon"></i>
+                            <a href="https://github.com/b92c/gotoon" target="_blank" class="oss-github-link">
+                                <span data-i18n="visit-repo">View on GitHub</span>
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                        <h3 data-i18n="oss2-title">gotoon</h3>
+                        <p data-i18n="oss2-desc">Go library implementation of Token-Oriented Object Notation (TOON). Serializes structured data into a token-efficient format tailored for LLM prompt context reduction.</p>
+                        <div class="oss-tags">
+                            <span>Go</span>
+                            <span>LLM</span>
+                            <span>Serialization</span>
+                            <span>AI Optimization</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Experience Timeline -->
+        <section id="experience">
+            <div class="container">
+                <h2 class="section-title" data-i18n="exp-title">Professional Journey</h2>
+                <p class="section-subtitle" data-i18n="exp-subtitle">A timeline of leading engineering teams and building high-performance systems.</p>
+                
+                <div class="timeline-wrapper">
+                    <div class="timeline-line"></div>
+                    
+                    <!-- Role 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-header">
+                                <div class="timeline-role">
+                                    <h3 data-i18n="exp-role1">Tech Lead | Forward Deployed Engineer (FDE)</h3>
+                                    <span class="timeline-company" data-i18n="exp-company1">HostGator América Latina</span>
+                                </div>
+                                <span class="timeline-period" data-i18n="exp-period1">Jun 2025 - Present</span>
+                            </div>
+                            <ul class="timeline-bullets">
+                                <li data-i18n="exp-bullet1-1">Leading cross-functional squads (Frontend, Backend, QA) in a high-scale hosting environment, partnering with Product Owners to ship portfolio-expanding solutions.</li>
+                                <li data-i18n="exp-bullet1-2">Integrating LLMs and AI-powered workflows (LangGraph, LangChain, Google ADK) into production applications to drive automation and efficiency.</li>
+                                <li data-i18n="exp-bullet1-3">Managing cloud-native environments (AWS, Kubernetes, Lambda) with Datadog and Prometheus observability and CI/CD pipelines.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Role 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-header">
+                                <div class="timeline-role">
+                                    <h3 data-i18n="exp-role2">Senior Software Developer</h3>
+                                    <span class="timeline-company" data-i18n="exp-company2">frete.com (Fretebras)</span>
+                                </div>
+                                <span class="timeline-period" data-i18n="exp-period2">Apr 2024 - Jun 2025</span>
+                            </div>
+                            <ul class="timeline-bullets">
+                                <li data-i18n="exp-bullet2-1">Developed an event-driven freight recommendation engine using Kafka pub-sub, Golang microservices, Milvus vector database, Data Science models, and MongoDB.</li>
+                                <li data-i18n="exp-bullet2-2">Built a real-time freight search engine with Kafka, Golang, and OpenSearch (Elasticsearch), served via REST APIs with Redis caching.</li>
+                                <li data-i18n="exp-bullet2-3">Adopted Hexagonal Architecture, Grafana/Datadog observability, Docker, and GitLab CI/CD pipelines across distributed microservices.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-header">
+                                <div class="timeline-role">
+                                    <h3 data-i18n="exp-role3">Senior Backend Developer</h3>
+                                    <span class="timeline-company" data-i18n="exp-company3">HostGator América Latina</span>
+                                </div>
+                                <span class="timeline-period" data-i18n="exp-period3">Apr 2023 - Mar 2024</span>
+                            </div>
+                            <ul class="timeline-bullets">
+                                <li data-i18n="exp-bullet3-1">Designed and built a Golang microservice processing AWS Lambda and EventBridge events, persisting in DynamoDB and serving via AWS API Gateway.</li>
+                                <li data-i18n="exp-bullet3-2">Enhanced core financial systems in PHP (Slim, CQRS) and Golang microservices handling PIX payments and bill processing.</li>
+                                <li data-i18n="exp-bullet3-3">Implemented Hexagonal Architecture, Serverless deployments, Jenkins CI/CD, and observability with AWS CloudWatch and Datadog.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 4 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-header">
+                                <div class="timeline-role">
+                                    <h3 data-i18n="exp-role4">Backend Developer</h3>
+                                    <span class="timeline-company" data-i18n="exp-company4">HostGator América Latina</span>
+                                </div>
+                                <span class="timeline-period" data-i18n="exp-period4">Feb 2022 - Apr 2023</span>
+                            </div>
+                            <ul class="timeline-bullets">
+                                <li data-i18n="exp-bullet4-1">Developed and maintained high-availability backend services supporting large-scale hosting and customer financial operations.</li>
+                                <li data-i18n="exp-bullet4-2">Collaborated across product and infrastructure teams to improve service reliability, automated testing, and deployment velocity.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 5 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-header">
+                                <div class="timeline-role">
+                                    <h3 data-i18n="exp-role5">Full Stack Engineer</h3>
+                                    <span class="timeline-company" data-i18n="exp-company5">Comunicare Aparelhos Auditivos</span>
+                                </div>
+                                <span class="timeline-period" data-i18n="exp-period5">Jul 2021 - Jan 2022</span>
+                            </div>
+                            <ul class="timeline-bullets">
+                                <li data-i18n="exp-bullet5-1">Maintained and built enterprise ERP features in CakePHP (MVC) backed by AWS RDS (MySQL), optimizing complex SQL queries.</li>
+                                <li data-i18n="exp-bullet5-2">Established Jenkins CI/CD pipelines and centralized log monitoring with Graylog to ensure system reliability.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 6 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-header">
+                                <div class="timeline-role">
+                                    <h3 data-i18n="exp-role6">Full Stack Developer</h3>
+                                    <span class="timeline-company" data-i18n="exp-company6">i94.Co™ & Freelance</span>
+                                </div>
+                                <span class="timeline-period" data-i18n="exp-period6">Jan 2019 - Jul 2021</span>
+                            </div>
+                            <ul class="timeline-bullets">
+                                <li data-i18n="exp-bullet6-1">Delivered end-to-end web applications, custom APIs, and relational database architectures as a Full Stack Developer at i94.Co™ (Nov 2020 – Jul 2021) and independent contractor.</li>
+                                <li data-i18n="exp-bullet6-2">Built responsive interfaces and scalable backend services for diverse business clients from requirements gathering to production launch.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Matrix -->
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title" data-i18n="skills-title">Skills & Technologies</h2>
+                <p class="section-subtitle" data-i18n="skills-subtitle">A curated matrix of technical core competencies and leadership skills.</p>
+                
+                <div class="skills-grid">
+                    <!-- 1. AI & Emerging Tech -->
+                    <div class="glass-card skills-category">
+                        <h3 data-i18n="skills-ai">AI & Emerging Tech</h3>
+                        <div class="skills-list">
+                            <span>LangGraph</span>
+                            <span>LangChain</span>
+                            <span>Google ADK</span>
+                            <span>AI Agents & Orchestration</span>
+                            <span>Multi-Agent Systems</span>
+                            <span>Milvus (Vector DB) & RAG</span>
+                            <span>TOON (Token Optimization)</span>
+                        </div>
+                    </div>
+
+                    <!-- 2. Languages & Frontend -->
+                    <div class="glass-card skills-category">
+                        <h3 data-i18n="skills-lang">Languages & Frontend</h3>
+                        <div class="skills-list">
+                            <span>Go (Golang)</span>
+                            <span>Python</span>
+                            <span>React</span>
+                            <span>SQL (MySQL / PostgreSQL)</span>
+                            <span>NoSQL (MongoDB / DynamoDB / Redis)</span>
+                            <span>OpenSearch / Elasticsearch</span>
+                            <span>PHP</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 3. Infrastructure & Cloud -->
+                    <div class="glass-card skills-category">
+                        <h3 data-i18n="skills-infra">Infrastructure & Cloud</h3>
+                        <div class="skills-list">
+                            <span>Docker</span>
+                            <span>Kubernetes</span>
+                            <span>CI/CD (GitLab / Jenkins)</span>
+                            <span>AWS (Lambda, EventBridge, RDS)</span>
+                            <span>GCP (Google Cloud)</span>
+                            <span>Linux</span>
+                            <span>Datadog / Prometheus / Grafana</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 4. Architecture & Methods -->
+                    <div class="glass-card skills-category">
+                        <h3 data-i18n="skills-arch">Architecture & Methods</h3>
+                        <div class="skills-list">
+                            <span>Event-Driven (Kafka / Pub-Sub)</span>
+                            <span>Microservices</span>
+                            <span>Hexagonal & Clean Architecture</span>
+                            <span>CQRS</span>
+                            <span>REST & gRPC APIs</span>
+                            <span>Serverless</span>
+                            <span>Tech Leadership & Agile</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
         <section id="contact">
             <div class="container">
-                <h2 class="section-title contact-title">Contact</h2>
-                <div class="contact-content">
-                    <p class="contact-desc">Interested in working together or have a question? Get in touch through any of the channels below:</p>
-                    <div class="social-links">
-                        <a href="mailto:brayann.barbosa@proton.me" class="social-link">
+                <div class="glass-card contact-card">
+                    <h2 data-i18n="contact-title">Let's Build Together</h2>
+                    <p data-i18n="contact-desc">I am always open to discussing technical architecture, team leadership strategies, or new opportunities. Reach out via any of these channels:</p>
+                    
+                    <div class="contact-links">
+                        <a href="mailto:brayann.barbosa@proton.me" class="contact-btn btn-email">
                             <i class="fas fa-envelope"></i>
-                            <span class="email-text">Email</span>
+                            <span>brayann.barbosa@proton.me</span>
                         </a>
-                        <a href="https://wa.me/5527997560340" target="_blank" class="social-link">
+                        <a href="https://wa.me/5527997560340" target="_blank" class="contact-btn btn-whatsapp">
                             <i class="fab fa-whatsapp"></i>
-                            <span class="whatsapp-text">WhatsApp</span>
+                            <span>WhatsApp</span>
                         </a>
-                        <a href="https://www.linkedin.com/in/brayannbarbosa/" target="_blank" class="social-link">
+                        <a href="https://www.linkedin.com/in/brayannbarbosa/" target="_blank" class="contact-btn btn-linkedin">
                             <i class="fab fa-linkedin"></i>
-                            <span class="linkedin-text">LinkedIn</span>
+                            <span>LinkedIn</span>
                         </a>
-                        <a href="https://github.com/b92c" target="_blank" class="social-link">
+                        <a href="https://github.com/b92c" target="_blank" class="contact-btn btn-github">
                             <i class="fab fa-github"></i>
-                            <span class="github-text">GitHub</span>
+                            <span>GitHub</span>
                         </a>
                     </div>
                 </div>
@@ -658,93 +1781,262 @@
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p class="footer-text">&copy; <span id="current-year"></span> Brayann Barbosa. <span class="rights-text">All rights reserved.</span></p>
+            <p>&copy; <span id="current-year"></span> Brayann Barbosa. <span data-i18n="rights-text">All rights reserved.</span></p>
         </div>
     </footer>
 
-    <script type='module'>import BubbleChat from 'https://agent-factory-chat.hostgator.io/scripts/start-chat.js'; const hashId = '6b873c39-4094-4486-84bf-da0bc948cee0'; const bubbleChat = new BubbleChat(hashId, 'prod'); bubbleChat.open();</script>
+    <!-- HostGator BubbleChat AI Agent widget integration -->
+    <script type='module'>
+        import BubbleChat from 'https://agent-factory-chat.hostgator.io/scripts/start-chat.js'; 
+        const hashId = '6b873c39-4094-4486-84bf-da0bc948cee0'; 
+        const bubbleChat = new BubbleChat(hashId, 'prod'); 
+        bubbleChat.open();
+    </script>
 
-    <!-- JavaScript Incorporado -->
     <script>
-        // Traduções
+        // Language Translations
         const translations = {
             'pt-br': {
-                'nav-about': 'Sobre',
-                'nav-projects': 'Projetos',
+                'nav-about': 'Sobre e Filosofia',
+                'nav-live-projects': 'Projetos no Ar',
+                'nav-case-studies': 'Impacto',
+                'nav-open-source': 'Open Source',
+                'nav-experience': 'Trajetória',
+                'nav-skills': 'Skills',
                 'nav-contact': 'Contato',
-                'hero-profession': 'Software Engineer',
-                'hero-description': 'Desenvolvendo soluções digitais com paixão e precisão.',
-                'btn-projects': 'Ver Projetos',
-                'btn-contact': 'Contato',
-                'about-title': 'Sobre Mim',
-                'about-p1': 'Olá! Sou Brayann Barbosa, um engenheiro de software de 32 anos, apaixonado por criar soluções digitais inovadoras e funcionais.',
-                'about-p2': 'Moro na paradisíaca Ilha de Guriri, em São Mateus - ES, Brasil, onde encontro o equilíbrio perfeito entre trabalho e qualidade de vida.',
-                'about-p3': 'Quando não estou codificando, dedico meu tempo à musculação, Jiu-Jitsu e Muay Thai, atividades que me ajudam a manter o foco e a disciplina que aplico em meus projetos profissionais.',
-                'about-p4': 'Minha missão é desenvolver produtos digitais que realmente façam a diferença na vida das pessoas, combinando funcionalidade, design intuitivo e performance.',
-                'projects-title': 'Projetos',
-                'project1-desc': 'Marketplace para profissionais liberais e prestadores de serviço, conectando clientes a profissionais qualificados de diversas áreas.',
-                'project2-desc': 'Ferramenta de produtividade que combina a técnica Pomodoro com um gerenciador de tarefas, ajudando usuários a maximizar seu foco e eficiência.',
-                'tag-marketplace': 'Marketplace',
-                'tag-webapp': 'Web App',
-                'tag-productivity': 'Produtividade',
-                'btn-visit': 'Visitar Site',
-                'contact-title': 'Contato',
-                'contact-desc': 'Interessado em trabalhar juntos ou tem alguma pergunta? Entre em contato por qualquer um dos canais abaixo:',
-                'email-text': 'Email',
-                'whatsapp-text': 'WhatsApp',
-                'linkedin-text': 'LinkedIn',
-                'github-text': 'GitHub',
+                
+                'hero-badge': 'Tech Lead na HostGator LATAM • +7 Anos de Experiência',
+                'hero-title': 'Brayann Barbosa',
+                'hero-subtitle': 'Forward Deployed Engineer | AI Engineer',
+                'hero-desc': 'Conecto problemas complexos de negócio à IA em produção, implementando fluxos multiagentes autônomos (LangGraph, LangChain, Google ADK) e arquitetando sistemas orientados a eventos em Go e Python em escala.',
+                'hero-cta-primary': 'Explorar Projetos no Ar',
+                'hero-cta-secondary': 'Entrar em Contato',
+                
+                'about-title': 'Sobre e Filosofia',
+                'about-subtitle': 'Unindo engenharia de IA em produção, arquitetura distribuída e entrega ágil de produto.',
+                'about-bio-1': 'Sou Brayann Barbosa, Forward Deployed Engineer, AI Engineer e Tech Lead com mais de 7 anos de experiência na construção de sistemas distribuídos de alta disponibilidade. Na HostGator LATAM, lidero squads multidisciplinares (Frontend, Backend e QA), atuando diretamente com Product Owners e stakeholders para entregar soluções impulsionadas por IA — reconhecido duas vezes como Top Talent e com o prêmio Gator Destaque.',
+                'about-bio-2': 'Baseado na Ilha de Guriri (São Mateus - ES) e fluente em Português, Inglês e Espanhol, levo a disciplina da musculação, Jiu-Jitsu e Muay Thai para a engenharia: resolvendo desafios técnicos ambíguos em campo com velocidade, estratégia e resiliência.',
+                
+                'phil-ai-title': 'Forward Deployed AI Engineering',
+                'phil-ai-desc': 'Projetando e colocando em produção fluxos multiagentes autônomos (LangGraph, LangChain, Google ADK), pipelines RAG com bancos vetoriais e integrações de LLM com foco em eficiência de tokens.',
+                'phil-perf-title': 'Arquitetura Orientada a Eventos e Escala',
+                'phil-perf-desc': 'Construindo microsserviços resilientes em Go e Python, pipelines pub-sub com Kafka e sistemas em Arquitetura Limpa e Hexagonal projetados para alta disponibilidade e baixa latência.',
+                'phil-lead-title': 'Liderança Técnica e Impacto de Produto',
+                'phil-lead-desc': 'Empoderando squads multidisciplinares, alinhando estratégia técnica ao crescimento do negócio e entregando produtos que expandem o portfólio do zero à produção.',
+                
+                'live-title': 'Projetos & Sites no Ar',
+                'live-subtitle': 'Websites, aplicações SaaS e produtos de IA atualmente ativos em produção.',
+                'live-status': 'No Ar em Produção',
+                'live1-title': 'Encontre Já',
+                'live1-desc': 'Marketplace de serviços digitais conectando clientes a profissionais qualificados em diversas categorias, construído com foco em conversão, confiabilidade e descoberta intuitiva.',
+                'live2-title': 'My Pomolist',
+                'live2-desc': 'Aplicação web de produtividade que combina a técnica Pomodoro com um gerenciador ágil de tarefas para ajudar usuários a manter foco profundo e acompanhar a execução diária.',
+                'live-tag-marketplace': 'Marketplace',
+                'live-tag-productivity': 'App de Produtividade',
+                'live-tag-prod': 'Produção',
+                'live-visit': 'Visitar Site',
+                
+                'cases-title': 'Impacto Corporativo',
+                'cases-subtitle': 'Principais conquistas em ecossistemas proprietários corporativos onde o código permanece privado, mas as soluções arquitetônicas e impactos de negócios são altamente visíveis.',
+                'case1-tag': 'HostGator LATAM / Newfold Digital',
+                'case1-title': 'Fluxos de Agentes de IA & Ecossistema Cloud Orientado a Eventos',
+                'case1-desc': 'Integração de LLMs e sistemas multiagentes (LangGraph, LangChain, Google ADK, BubbleChat AI Agent Factory) em fluxos de atendimento em produção, além de microsserviços Go orientados a eventos na AWS (Lambda, EventBridge, DynamoDB, API Gateway) e plataformas financeiras de PIX e faturamento.',
+                'case1-impact': 'Impacto: Automação de fluxos de alto volume para clientes, redução no consumo de tokens e escala de arquiteturas serverless e financeiras resilientes atendendo milhões de usuários.',
+                'case2-tag': 'frete.com (Fretebras)',
+                'case2-title': 'Motor de Recomendação com IA & Busca em Tempo Real',
+                'case2-desc': 'Arquitetura de um motor de recomendação orientado a eventos com Kafka (pub-sub) e microsserviços em Golang conectando cargas a motoristas via Milvus (Banco Vetorial), modelos de Data Science e MongoDB, além de um motor de busca de alta vazão com OpenSearch (Elasticsearch) e Redis.',
+                'case2-impact': 'Impacto: Match semântico em tempo real entre fretes e caminhoneiros, redução de latência de APIs com cache em Redis e observabilidade 24/7 com Datadog e Grafana.',
+                
+                'oss-title': 'Destaques Open Source',
+                'oss-subtitle': 'Minhas contribuições para a comunidade de desenvolvimento, com foco em monitoramento de containers e otimização para LLMs.',
+                'oss1-title': 'gowatch',
+                'oss1-desc': 'Um monitor leve de recursos de containers Docker voltado para desenvolvimento local de microsserviços. Acompanha consumo de memória, CPU e rede em tempo real diretamente pelo terminal.',
+                'oss2-title': 'gotoon',
+                'oss2-desc': 'Implementação em Go da notação TOON (Token-Oriented Object Notation). Serializa dados estruturados em um formato otimizado para reduzir o consumo de tokens em prompts de LLMs.',
+                'visit-repo': 'Ver no GitHub',
+                
+                'exp-title': 'Jornada Profissional',
+                'exp-subtitle': 'Uma linha do tempo liderando times de engenharia e construindo sistemas de alta performance.',
+                'exp-role1': 'Tech Lead | Forward Deployed Engineer (FDE)',
+                'exp-company1': 'HostGator América Latina',
+                'exp-period1': 'Jun 2025 - Presente',
+                'exp-bullet1-1': 'Liderança de squads multidisciplinares (Frontend, Backend e QA) em ambiente de hospedagem em larga escala, atuando com Product Owners para entregar soluções que expandem o portfólio.',
+                'exp-bullet1-2': 'Integração de LLMs e fluxos baseados em agentes de IA (LangGraph, LangChain, Google ADK) em aplicações reais para impulsionar automação e eficiência.',
+                'exp-bullet1-3': 'Gestão de ambientes cloud-native (AWS, Kubernetes, Lambda) com observabilidade via Datadog e Prometheus e pipelines de CI/CD.',
+                
+                'exp-role2': 'Senior Software Developer',
+                'exp-company2': 'frete.com (Fretebras)',
+                'exp-period2': 'Abr 2024 - Jun 2025',
+                'exp-bullet2-1': 'Desenvolvimento de motor de recomendação de fretes orientado a eventos com Kafka pub-sub, microsserviços Golang, banco vetorial Milvus, modelos de Data Science e MongoDB.',
+                'exp-bullet2-2': 'Construção de sistema de busca em tempo real utilizando Kafka, Golang e OpenSearch (Elasticsearch), servido via APIs REST com cache em Redis.',
+                'exp-bullet2-3': 'Adoção de Arquitetura Hexagonal, observabilidade com Grafana e Datadog, Docker e pipelines GitLab CI/CD em microsserviços distribuídos.',
+                
+                'exp-role3': 'Senior Backend Developer',
+                'exp-company3': 'HostGator América Latina',
+                'exp-period3': 'Abr 2023 - Mar 2024',
+                'exp-bullet3-1': 'Desenvolvimento de microsserviço em Golang processando eventos de AWS Lambda e EventBridge, persistindo em DynamoDB e servindo via AWS API Gateway.',
+                'exp-bullet3-2': 'Evolução de sistemas financeiros core em PHP (Slim, CQRS) e microsserviços Golang responsáveis por pagamentos via PIX, boletos e faturamento.',
+                'exp-bullet3-3': 'Aplicação de Arquitetura Hexagonal, implantações Serverless, CI/CD com Jenkins e observabilidade com AWS CloudWatch e Datadog.',
+                
+                'exp-role4': 'Backend Developer',
+                'exp-company4': 'HostGator América Latina',
+                'exp-period4': 'Fev 2022 - Abr 2023',
+                'exp-bullet4-1': 'Desenvolvimento e manutenção de serviços backend de alta disponibilidade para operações financeiras e infraestrutura de hospedagem em larga escala.',
+                'exp-bullet4-2': 'Colaboração entre times de produto e infraestrutura para elevar confiabilidade de serviços, testes automatizados e velocidade de entrega.',
+                
+                'exp-role5': 'Full Stack Engineer',
+                'exp-company5': 'Comunicare Aparelhos Auditivos',
+                'exp-period5': 'Jul 2021 - Jan 2022',
+                'exp-bullet5-1': 'Manutenção e criação de novas funcionalidades em sistema ERP corporativo em CakePHP (MVC) com AWS RDS (MySQL), otimizando queries SQL complexas.',
+                'exp-bullet5-2': 'Implementação de pipelines de CI/CD com Jenkins e monitoramento centralizado de logs com Graylog para garantir confiabilidade do sistema.',
+                
+                'exp-role6': 'Full Stack Developer',
+                'exp-company6': 'i94.Co™ & Freelance',
+                'exp-period6': 'Jan 2019 - Jul 2021',
+                'exp-bullet6-1': 'Entrega de aplicações web ponta a ponta, APIs customizadas e modelagem de bancos de dados relacionais como Full Stack Developer na i94.Co™ (Nov 2020 – Jul 2021) e atuação independente.',
+                'exp-bullet6-2': 'Construção de interfaces responsivas e serviços backend escaláveis para diversos clientes comerciais, do levantamento de requisitos ao deploy em produção.',
+                
+                'skills-title': 'Habilidades & Tecnologias',
+                'skills-subtitle': 'Uma matriz selecionada de competências técnicas essenciais e liderança.',
+                'skills-ai': 'IA & Tecnologias Emergentes',
+                'skills-lang': 'Linguagens & Frontend',
+                'skills-infra': 'Infraestrutura & Cloud',
+                'skills-arch': 'Arquitetura & Métodos',
+                
+                'contact-title': 'Vamos Construir Juntos',
+                'contact-desc': 'Estou sempre aberto a debater arquitetura de agentes de IA, engenharia forward-deployed ou novas oportunidades. Fale comigo por qualquer um destes canais:',
                 'rights-text': 'Todos os direitos reservados.'
             },
             'en': {
-                'nav-about': 'About',
-                'nav-projects': 'Projects',
+                'nav-about': 'About & Philosophy',
+                'nav-live-projects': 'Live Projects',
+                'nav-case-studies': 'Enterprise Impact',
+                'nav-open-source': 'Open Source',
+                'nav-experience': 'Experience',
+                'nav-skills': 'Skills',
                 'nav-contact': 'Contact',
-                'hero-profession': 'Software Engineer',
-                'hero-description': 'Developing digital solutions with passion and precision.',
-                'btn-projects': 'View Projects',
-                'btn-contact': 'Contact',
-                'about-title': 'About Me',
-                'about-p1': 'Hello! I\'m Brayann Barbosa, a 32-year-old software engineer passionate about creating innovative and functional digital solutions.',
-                'about-p2': 'I live in the paradise-like Guriri Island, in São Mateus - ES, Brazil, where I find the perfect balance between work and quality of life.',
-                'about-p3': 'When I\'m not coding, I dedicate my time to weightlifting, Jiu-Jitsu, and Muay Thai, activities that help me maintain the focus and discipline I apply to my professional projects.',
-                'about-p4': 'My mission is to develop digital products that truly make a difference in people\'s lives, combining functionality, intuitive design, and performance.',
-                'projects-title': 'Projects',
-                'project1-desc': 'Marketplace for freelancers and service providers, connecting clients to qualified professionals from various areas.',
-                'project2-desc': 'Productivity tool that combines the Pomodoro technique with a to-do list manager, helping users maximize their focus and efficiency.',
-                'tag-marketplace': 'Marketplace',
-                'tag-webapp': 'Web App',
-                'tag-productivity': 'Productivity',
-                'btn-visit': 'Visit Website',
-                'contact-title': 'Contact',
-                'contact-desc': 'Interested in working together or have a question? Get in touch through any of the channels below:',
-                'email-text': 'Email',
-                'whatsapp-text': 'WhatsApp',
-                'linkedin-text': 'LinkedIn',
-                'github-text': 'GitHub',
+                
+                'hero-badge': 'Tech Lead at HostGator LATAM • 7+ Years Experience',
+                'hero-title': 'Brayann Barbosa',
+                'hero-subtitle': 'Forward Deployed Engineer | AI Engineer',
+                'hero-desc': 'I bridge complex business problems and production AI, deploying autonomous multi-agent workflows (LangGraph, LangChain, Google ADK) and architecting event-driven Go and Python systems at scale.',
+                'hero-cta-primary': 'Explore Live Projects',
+                'hero-cta-secondary': 'Get in Touch',
+                
+                'about-title': 'About & Philosophy',
+                'about-subtitle': 'Bridging the gap between production AI engineering, distributed architecture, and rapid product delivery.',
+                'about-bio-1': 'I am Brayann Barbosa, a Forward Deployed Engineer, AI Engineer, and Tech Lead with over 7 years of experience building high-availability distributed systems. At HostGator LATAM, I lead cross-functional squads (Frontend, Backend, and QA), partnering directly with Product Owners and stakeholders to ship AI-driven solutions—recognized twice as Top Talent and with the Gator Destaque award.',
+                'about-bio-2': 'Based in Guriri Island (São Mateus - ES, Brazil) and fluent in Portuguese, English, and Spanish, I bring the discipline of weightlifting, Jiu-Jitsu, and Muay Thai into engineering: solving ambiguous technical challenges in the field with speed, strategy, and resilience.',
+                
+                'phil-ai-title': 'Forward Deployed AI Engineering',
+                'phil-ai-desc': 'Designing and deploying autonomous multi-agent workflows (LangGraph, LangChain, Google ADK), vector RAG pipelines, and token-efficient LLM integrations directly into production.',
+                'phil-perf-title': 'Event-Driven Architecture & Scale',
+                'phil-perf-desc': 'Building resilient Go and Python microservices, Kafka pub-sub pipelines, and Clean/Hexagonal systems engineered for high availability and low latency.',
+                'phil-lead-title': 'Technical Leadership & Product Impact',
+                'phil-lead-desc': 'Empowering multidisciplinary squads, aligning technical strategy with business growth, and delivering portfolio-expanding products from zero to production.',
+                
+                'live-title': 'Live Projects & Products',
+                'live-subtitle': 'Websites, SaaS applications, and AI products currently live in production.',
+                'live-status': 'Live in Production',
+                'live1-title': 'Encontre Já',
+                'live1-desc': 'Digital service marketplace connecting clients with qualified professionals across multiple categories, built with a focus on conversion, reliability, and intuitive discovery.',
+                'live2-title': 'My Pomolist',
+                'live2-desc': 'Productivity web application combining the Pomodoro time-boxing technique with an agile task manager to help users sustain deep focus and track daily execution.',
+                'live-tag-marketplace': 'Marketplace',
+                'live-tag-productivity': 'Productivity App',
+                'live-tag-prod': 'Production',
+                'live-visit': 'Visit Website',
+                
+                'cases-title': 'Enterprise Impact',
+                'cases-subtitle': 'Key achievements in proprietary corporate ecosystems where source code remains private, but the architectural solutions and business impacts are highly visible.',
+                'case1-tag': 'HostGator LATAM / Newfold Digital',
+                'case1-title': 'AI Agent Workflows & Event-Driven Cloud Ecosystem',
+                'case1-desc': 'Integrating LLMs and multi-agent systems (LangGraph, LangChain, Google ADK, BubbleChat AI Agent Factory) into production customer flows, alongside event-driven Go microservices on AWS (Lambda, EventBridge, DynamoDB, API Gateway) and PIX/billing financial platforms.',
+                'case1-impact': 'Impact: Automated high-volume customer workflows, reduced token consumption, and scaled resilient serverless and financial architectures serving millions of hosting users.',
+                'case2-tag': 'frete.com (Fretebras)',
+                'case2-title': 'AI Freight Recommendation Engine & Real-Time Search',
+                'case2-desc': 'Architected an event-driven recommendation engine using Kafka (pub-sub) and Golang microservices matching cargo to truckers via Milvus (Vector Database), Data Science models, and MongoDB, plus a high-throughput search engine using OpenSearch (Elasticsearch) and Redis.',
+                'case2-impact': 'Impact: Enabled real-time semantic matching between freight and drivers, cut API latencies with Redis caching, and ensured 24/7 observability via Datadog and Grafana.',
+                
+                'oss-title': 'Featured Open Source',
+                'oss-subtitle': 'My contributions to the developer community, focusing on container monitoring and LLM optimization.',
+                'oss1-title': 'gowatch',
+                'oss1-desc': 'A lightweight Docker container monitor for local microservices development. Tracks memory, CPU, and network resource consumption in real time directly from the CLI.',
+                'oss2-title': 'gotoon',
+                'oss2-desc': 'Go library implementation of Token-Oriented Object Notation (TOON). Serializes structured data into a token-efficient format tailored for LLM prompt context reduction.',
+                'visit-repo': 'View on GitHub',
+                
+                'exp-title': 'Professional Journey',
+                'exp-subtitle': 'A timeline of leading engineering teams and building high-performance systems.',
+                'exp-role1': 'Tech Lead | Forward Deployed Engineer (FDE)',
+                'exp-company1': 'HostGator América Latina',
+                'exp-period1': 'Jun 2025 - Present',
+                'exp-bullet1-1': 'Leading cross-functional squads (Frontend, Backend, QA) in a high-scale hosting environment, partnering with Product Owners to ship portfolio-expanding solutions.',
+                'exp-bullet1-2': 'Integrating LLMs and AI-powered workflows (LangGraph, LangChain, Google ADK) into production applications to drive automation and efficiency.',
+                'exp-bullet1-3': 'Managing cloud-native environments (AWS, Kubernetes, Lambda) with Datadog and Prometheus observability and CI/CD pipelines.',
+                
+                'exp-role2': 'Senior Software Developer',
+                'exp-company2': 'frete.com (Fretebras)',
+                'exp-period2': 'Apr 2024 - Jun 2025',
+                'exp-bullet2-1': 'Developed an event-driven freight recommendation engine using Kafka pub-sub, Golang microservices, Milvus vector database, Data Science models, and MongoDB.',
+                'exp-bullet2-2': 'Built a real-time freight search engine with Kafka, Golang, and OpenSearch (Elasticsearch), served via REST APIs with Redis caching.',
+                'exp-bullet2-3': 'Adopted Hexagonal Architecture, Grafana/Datadog observability, Docker, and GitLab CI/CD pipelines across distributed microservices.',
+                
+                'exp-role3': 'Senior Backend Developer',
+                'exp-company3': 'HostGator América Latina',
+                'exp-period3': 'Apr 2023 - Mar 2024',
+                'exp-bullet3-1': 'Designed and built a Golang microservice processing AWS Lambda and EventBridge events, persisting in DynamoDB and serving via AWS API Gateway.',
+                'exp-bullet3-2': 'Enhanced core financial systems in PHP (Slim, CQRS) and Golang microservices handling PIX payments and bill processing.',
+                'exp-bullet3-3': 'Implemented Hexagonal Architecture, Serverless deployments, Jenkins CI/CD, and observability with AWS CloudWatch and Datadog.',
+                
+                'exp-role4': 'Backend Developer',
+                'exp-company4': 'HostGator América Latina',
+                'exp-period4': 'Feb 2022 - Apr 2023',
+                'exp-bullet4-1': 'Developed and maintained high-availability backend services supporting large-scale hosting and customer financial operations.',
+                'exp-bullet4-2': 'Collaborated across product and infrastructure teams to improve service reliability, automated testing, and deployment velocity.',
+                
+                'exp-role5': 'Full Stack Engineer',
+                'exp-company5': 'Comunicare Aparelhos Auditivos',
+                'exp-period5': 'Jul 2021 - Jan 2022',
+                'exp-bullet5-1': 'Maintained and built enterprise ERP features in CakePHP (MVC) backed by AWS RDS (MySQL), optimizing complex SQL queries.',
+                'exp-bullet5-2': 'Established Jenkins CI/CD pipelines and centralized log monitoring with Graylog to ensure system reliability.',
+                
+                'exp-role6': 'Full Stack Developer',
+                'exp-company6': 'i94.Co™ & Freelance',
+                'exp-period6': 'Jan 2019 - Jul 2021',
+                'exp-bullet6-1': 'Delivered end-to-end web applications, custom APIs, and relational database architectures as a Full Stack Developer at i94.Co™ (Nov 2020 – Jul 2021) and independent contractor.',
+                'exp-bullet6-2': 'Built responsive interfaces and scalable backend services for diverse business clients from requirements gathering to production launch.',
+                
+                'skills-title': 'Skills & Technologies',
+                'skills-subtitle': 'A curated matrix of technical core competencies and leadership skills.',
+                'skills-ai': 'AI & Emerging Tech',
+                'skills-lang': 'Languages & Frontend',
+                'skills-infra': 'Infrastructure & Cloud',
+                'skills-arch': 'Architecture & Methods',
+                
+                'contact-title': 'Let\'s Build Together',
+                'contact-desc': 'I am always open to discussing AI agent architectures, forward-deployed engineering, or new opportunities. Reach out via any of these channels:',
                 'rights-text': 'All rights reserved.'
             }
         };
 
-        // Função para mudar o idioma
+        // Change Language Function
         function changeLanguage(lang) {
-            // Atualiza todos os textos traduzíveis
-            for (const [key, value] of Object.entries(translations[lang])) {
-                const elements = document.getElementsByClassName(key);
-                for (let i = 0; i < elements.length; i++) {
-                    elements[i].textContent = value;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
                 }
-            }
+            });
             
-            // Atualiza o texto do seletor de idioma
-            const currentLangText = document.querySelector('#language-current span');
-            currentLangText.textContent = lang === 'en' ? 'English' : 'Português';
+            // Update UI selector states
+            const currentLangSpan = document.querySelector('#language-current span');
+            currentLangSpan.textContent = lang === 'en' ? 'English' : 'Português';
             
-            // Atualiza as opções do dropdown
-            const options = document.querySelectorAll('.language-option');
-            options.forEach(option => {
+            document.querySelectorAll('.language-option').forEach(option => {
                 const optionLang = option.getAttribute('data-lang');
                 if (optionLang === lang) {
                     option.classList.add('active');
@@ -753,162 +2045,138 @@
                 }
             });
             
-            // Salva a preferência de idioma
             localStorage.setItem('preferredLanguage', lang);
-            
-            // Atualiza o atributo lang do HTML
             document.documentElement.lang = lang;
         }
 
-        // Inicializa o seletor de idioma
-        document.addEventListener('DOMContentLoaded', function() {
-            const languageCurrent = document.getElementById('language-current');
-            const languageDropdown = document.getElementById('language-dropdown');
-            const languageOptions = document.querySelectorAll('.language-option');
+        // Initialize UI Scripts
+        document.addEventListener('DOMContentLoaded', () => {
+            // Language Select triggers
+            const currentSelector = document.getElementById('language-current');
+            const dropdown = document.getElementById('language-dropdown');
             
-            // Toggle do dropdown
-            languageCurrent.addEventListener('click', function() {
-                languageCurrent.classList.toggle('active');
-                languageDropdown.classList.toggle('active');
+            currentSelector.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentSelector.classList.toggle('active');
+                dropdown.classList.toggle('active');
             });
             
-            // Fechar dropdown ao clicar fora
-            document.addEventListener('click', function(event) {
-                if (!event.target.closest('.language-selector')) {
-                    languageCurrent.classList.remove('active');
-                    languageDropdown.classList.remove('active');
-                }
-            });
-            
-            // Selecionar idioma
-            languageOptions.forEach(option => {
+            document.querySelectorAll('.language-option').forEach(option => {
                 option.addEventListener('click', function() {
                     const lang = this.getAttribute('data-lang');
                     changeLanguage(lang);
-                    languageCurrent.classList.remove('active');
-                    languageDropdown.classList.remove('active');
+                    currentSelector.classList.remove('active');
+                    dropdown.classList.remove('active');
                 });
             });
             
-            // Verifica se há uma preferência de idioma salva
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.language-selector')) {
+                    currentSelector.classList.remove('active');
+                    dropdown.classList.remove('active');
+                }
+            });
+            
+            // Set preferred language
             const savedLanguage = localStorage.getItem('preferredLanguage');
             if (savedLanguage) {
                 changeLanguage(savedLanguage);
             } else {
-                // Define inglês como padrão
                 changeLanguage('en');
             }
-        });
 
-        // Mobile menu toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            
-            // Animate hamburger to X
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
             const bars = document.querySelectorAll('.bar');
-            bars.forEach(bar => {
-                bar.classList.toggle('active');
-            });
-        });
-
-        // Close mobile menu when clicking on a link
-        const navItems = document.querySelectorAll('.nav-links a');
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    
-                    // Reset hamburger animation
-                    const bars = document.querySelectorAll('.bar');
-                    bars.forEach(bar => {
-                        bar.classList.remove('active');
-                    });
-                }
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    // Account for fixed header
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Add active class to nav links on scroll
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
             
-            let current = '';
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                bars.forEach(bar => bar.classList.toggle('active'));
+            });
+            
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    bars.forEach(bar => bar.classList.remove('active'));
+                });
+            });
+
+            // Active section indicator on scroll & header shrink
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.nav-links a');
+            const header = document.querySelector('header');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                const scrollY = window.pageYOffset;
+                
+                // Header shrink effect
+                if (scrollY > 50) {
+                    header.style.padding = '0.8rem 0';
+                    header.style.background = 'rgba(6, 8, 12, 0.85)';
+                } else {
+                    header.style.padding = '1.2rem 0';
+                    header.style.background = 'rgba(6, 8, 12, 0.6)';
+                }
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 120;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === `#${current}`) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+
+            // Smooth Scroll with Header Offset
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Scroll Reveal Animation via IntersectionObserver
+            const revealOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.12
+            };
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
             
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
+                revealObserver.observe(section);
             });
             
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Add animation to elements when they come into view
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Update current year in footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Add hover effect to project cards
-        const projectCards = document.querySelectorAll('.project-card');
-        projectCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-            });
+            // Set footer year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
         });
     </script>
 </body>
